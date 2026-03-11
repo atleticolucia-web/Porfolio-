@@ -1,0 +1,74 @@
+﻿/*
+  FASE 1 - CSS:
+  Objetivo: entender estilos básicos, colores, espaciado y tipografía.
+*/
+
+:root {
+  --bg: #f4f6ff;
+  --text: #1a1f2e;
+  --accent: #0f766e;
+  --card: #ffffff;
+}
+
+/* Reset pequeño para evitar estilos raros por defecto del navegador */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #dbeafe, #fef3c7);
+  color: var(--text);
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.hero__tag {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin: 10px 0;
+}
+
+.hero__subtitle {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  line-height: 1.6;
+}
+
+button {
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.section {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
