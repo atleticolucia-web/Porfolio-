@@ -1,0 +1,631 @@
+/*
+╔══════════════════════════════════════════════════════════════╗
+║  TEMA: DARK NEON                                            ║
+║  Estética: fondo negro, acentos en verde neón/cian          ║
+║  Fuente: Orbitron (geométrica, tech) + DM Sans (cuerpo)     ║
+╚══════════════════════════════════════════════════════════════╝
+
+  CÓMO PERSONALIZAR ESTE TEMA:
+  · Cambia --color-acento para otro color neón (ej: #ff00ff, #00bfff)
+  · Cambia --color-fondo para un fondo más oscuro o más azulado
+  · La fuente se importa de Google Fonts — cámbiala por la que quieras
+*/
+
+/* ── Importar fuentes de Google Fonts ─────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* ── Variables: el corazón del tema ───────────────────────── */
+/*
+  :root aplica las variables a toda la página.
+  Cambia solo estos valores y todo el diseño cambia.
+*/
+:root {
+  --color-fondo:       #0a0a0f;
+  --color-fondo-card:  #12121a;
+  --color-fondo-nav:   rgba(10, 10, 15, 0.92);
+  --color-texto:       #e2e8f0;
+  --color-texto-suave: #94a3b8;
+  --color-acento:      #00ff9d;
+  --color-acento-rgb:  0, 255, 157;     /* para usar en rgba() */
+  --color-borde:       rgba(0, 255, 157, 0.15);
+  --color-error:       #ff4d6d;
+  --color-exito:       #00ff9d;
+
+  --radio-card:   12px;
+  --sombra-card:  0 4px 30px rgba(0, 255, 157, 0.08);
+  --sombra-glow:  0 0 20px rgba(0, 255, 157, 0.3);
+
+  --fuente-titulo: 'Orbitron', monospace;
+  --fuente-cuerpo: 'DM Sans', sans-serif;
+
+  --transicion:   0.25s ease;
+}
+
+/* Tema alternativo (se activa con clase "tema-b" en body) */
+body.tema-b {
+  --color-fondo:       #0d0d1a;
+  --color-acento:      #a78bfa;
+  --color-acento-rgb:  167, 139, 250;
+  --color-borde:       rgba(167, 139, 250, 0.15);
+  --sombra-card:       0 4px 30px rgba(167, 139, 250, 0.08);
+  --sombra-glow:       0 0 20px rgba(167, 139, 250, 0.3);
+}
+
+
+/* ── Reset y base ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;    /* scroll suave al hacer clic en los enlaces de nav */
+  scroll-padding-top: 70px;   /* evita que el header tape el inicio de la sección */
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Barra de navegación ───────────────────────────────────── */
+.nav {
+  position: fixed;           /* se queda fija aunque hagas scroll */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  height: 64px;
+  background: var(--color-fondo-nav);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.nav__logo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--color-texto);
+  margin-right: auto;   /* empuja el resto de elementos a la derecha */
+}
+
+.nav__logo--accent {
+  color: var(--color-acento);
+  text-shadow: var(--sombra-glow);
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav__link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: var(--color-texto-suave);
+  transition: color var(--transicion);
+}
+
+.nav__link:hover,
+.nav__link--activo {
+  color: var(--color-acento);
+}
+
+/* Botón hamburguesa — solo visible en móvil */
+.nav__hamburguesa {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav__hamburguesa span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-texto);
+  border-radius: 2px;
+  transition: transform var(--transicion), opacity var(--transicion);
+}
+
+/* Animación de las 3 líneas → X al abrir el menú */
+.nav__hamburguesa--activo span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__hamburguesa--activo span:nth-child(2) {
+  opacity: 0;
+}
+.nav__hamburguesa--activo span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ── Sección Hero ──────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 2rem 4rem;
+  position: relative;
+}
+
+/* Fondo decorativo: gradiente radial sutil */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 40%,
+    rgba(var(--color-acento-rgb), 0.07) 0%,
+    transparent 70%);
+  pointer-events: none;   /* no interfiere con los clics */
+}
+
+.hero__eyebrow {
+  font-family: var(--fuente-titulo);
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-acento);
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.5rem, 8vw, 5rem);  /* escala con el ancho de pantalla */
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.hero__title--accent {
+  color: var(--color-acento);
+  text-shadow: var(--sombra-glow);
+}
+
+.hero__subtitle {
+  max-width: 560px;
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.hero__reloj {
+  font-family: var(--fuente-titulo);
+  font-size: 0.9rem;
+  color: var(--color-acento);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+
+/* ── Botones ───────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-acento);
+  background: transparent;
+  color: var(--color-acento);
+  font-family: var(--fuente-titulo);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transicion), box-shadow var(--transicion);
+}
+
+.btn:hover {
+  background: rgba(var(--color-acento-rgb), 0.1);
+  box-shadow: var(--sombra-glow);
+}
+
+.btn--primary {
+  background: var(--color-acento);
+  color: #0a0a0f;
+}
+
+.btn--primary:hover {
+  box-shadow: var(--sombra-glow);
+  opacity: 0.9;
+}
+
+.btn--small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+}
+
+
+/* ── Secciones ─────────────────────────────────────────────── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 6rem;
+}
+
+.seccion {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.seccion__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--color-acento);
+  margin-bottom: 0.75rem;
+}
+
+.seccion__descripcion {
+  color: var(--color-texto-suave);
+  margin-bottom: 2.5rem;
+}
+
+
+/* ── Sobre mí ──────────────────────────────────────────────── */
+.sobre-mi {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.sobre-mi__avatar {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--color-fondo-card);
+  border: 2px solid var(--color-acento);
+  box-shadow: var(--sombra-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fuente-titulo);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-acento);
+}
+
+.sobre-mi__texto p {
+  color: var(--color-texto-suave);
+  margin-bottom: 0.75rem;
+}
+
+
+/* ── Habilidades ───────────────────────────────────────────── */
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  background: var(--color-fondo-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-card);
+  padding: 1.5rem;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.skill-card:hover {
+  border-color: var(--color-acento);
+  box-shadow: var(--sombra-card);
+}
+
+.skill-card__icono {
+  font-size: 1.75rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.skill-card__nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-acento);
+  margin-bottom: 0.25rem;
+}
+
+.skill-card__nivel {
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 0.75rem;
+}
+
+.skill-card__barra {
+  height: 4px;
+  background: rgba(var(--color-acento-rgb), 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-card__progreso {
+  height: 100%;
+  background: var(--color-acento);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(var(--color-acento-rgb), 0.6);
+}
+
+
+/* ── Proyectos ─────────────────────────────────────────────── */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filtro {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-borde);
+  background: transparent;
+  color: var(--color-texto-suave);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transicion);
+}
+
+.filtro:hover,
+.filtro--activo {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+  background: rgba(var(--color-acento-rgb), 0.08);
+}
+
+.proyectos-contador {
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 1.5rem;
+}
+
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.proyecto-card {
+  background: var(--color-fondo-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.proyecto-card:hover {
+  border-color: var(--color-acento);
+  transform: translateY(-4px);
+}
+
+/* Clase añadida por JS al filtrar */
+.proyecto-card--oculto {
+  display: none;
+}
+
+.proyecto-card__imagen {
+  font-size: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(var(--color-acento-rgb), 0.05);
+  text-align: center;
+}
+
+.proyecto-card__cuerpo {
+  padding: 1.25rem;
+}
+
+.proyecto-card__tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-acento);
+}
+
+.proyecto-card__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 0.9rem;
+  margin: 0.4rem 0 0.5rem;
+}
+
+.proyecto-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+
+/* ── Formulario ────────────────────────────────────────────── */
+.form {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form__grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-texto-suave);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__input {
+  background: var(--color-fondo-card);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: var(--color-texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+  resize: none;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(var(--color-acento-rgb), 0.12);
+}
+
+.form__input--error {
+  border-color: var(--color-error);
+}
+
+.form__textarea {
+  min-height: 120px;
+}
+
+.form__error {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  min-height: 1rem;
+}
+
+.form__contador {
+  font-size: 0.75rem;
+  color: var(--color-texto-suave);
+}
+
+.form__contador--alerta {
+  color: #f59e0b;
+}
+
+.form__exito {
+  font-size: 0.9rem;
+  color: var(--color-exito);
+}
+
+
+/* ── Animaciones al hacer scroll (IntersectionObserver) ────── */
+/*
+  .reveal: estado inicial — invisible y desplazado hacia abajo.
+  .reveal--visible: estado final — visible y en su posición.
+  El JS añade la clase reveal--visible cuando el elemento entra en pantalla.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── Footer ────────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--color-borde);
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+}
+
+/* Botón volver arriba */
+.btn-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-acento);
+  background: var(--color-fondo-card);
+  color: var(--color-acento);
+  font-size: 1.1rem;
+  cursor: pointer;
+  /* Oculto por defecto — el JS añade btn-top--visible */
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity var(--transicion), transform var(--transicion);
+  z-index: 99;
+}
+
+.btn-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.btn-top:hover {
+  box-shadow: var(--sombra-glow);
+}
+
+
+/* ── Responsive: pantallas pequeñas ───────────────────────── */
+@media (max-width: 768px) {
+
+  /* Mostramos el botón hamburguesa */
+  .nav__hamburguesa {
+    display: flex;
+    margin-left: auto;
+  }
+
+  /* El menú se oculta por defecto en móvil */
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: var(--color-fondo-nav);
+    border-bottom: 1px solid var(--color-borde);
+    padding: 1rem 0;
+  }
+
+  /* Cuando el JS añade esta clase, el menú se muestra */
+  .nav__links--open {
+    display: flex;
+  }
+
+  .nav__link {
+    padding: 0.75rem 2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* En móvil el avatar y el texto van en columna */
+  .sobre-mi {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Portfolio</title>
+
+  <!--
+    ============================================================
+    FASE 1 — ESTRUCTURA Y ESTILO BASE
+    ============================================================
+    Conceptos que aprenderás en esta fase:
+      · Estructura HTML semántica (header, main, section, footer)
+      · Variables CSS (--nombre-variable) para tener colores centralizados
+      · Flexbox para alinear elementos
+      · BEM: una forma de nombrar clases (.bloque__elemento--modificador)
+
+    Para cambiar el tema visual, solo cambia el nombre del archivo CSS:
+      · tema-dark-neon.css
+      · tema-glass.css
+      · tema-bold.css
+      · tema-minimal.css
+    ============================================================
+  -->
+
+  <!-- CAMBIA ESTE ARCHIVO PARA CAMBIAR EL TEMA VISUAL COMPLETO -->
+  <link rel="stylesheet" href="tema-minimal.css" />
+</head>
+<body>
+
+  <!-- ==========================================
+    HEADER: la barra de navegación superior.
+    Siempre visible, fija al hacer scroll.
+  =========================================== -->
+  <header class="nav" id="inicio">
+    <!-- El logo/nombre del portfolio -->
+    <span class="nav__logo">PORTFOLIO DE ALEX<span class="nav__logo--accent">.</span></span>
+
+    <!-- Los enlaces de navegación interna -->
+    <!-- href="#id" salta a la sección con ese id en la misma página -->
+    <nav class="nav__links">
+      <a href="#sobre-mi" class="nav__link">Sobre mí</a>
+      <a href="#habilidades" class="nav__link">Habilidades</a>
+      <a href="#proyectos" class="nav__link">Proyectos</a>
+      <a href="#contacto" class="nav__link">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ==========================================
+    HERO: la sección principal de bienvenida.
+    Es lo primero que ve el visitante.
+  =========================================== -->
+  <section class="hero">
+    <p class="hero__eyebrow">Estudiante Front End</p>
+    <h1 class="hero__title">
+      Hola, soy <span class="hero__title--accent">Alex</span>
+    </h1>
+    <p class="hero__subtitle">
+      Estoy aprendiendo a construir experiencias web con HTML, CSS y JavaScript.
+      Este es mi espacio para mostrar lo que voy creando.
+    </p>
+    <!-- El botón existe aquí pero su funcionalidad viene en la Fase 2 -->
+    <button class="btn btn--primary" id="btnSaludo">Salúdame</button>
+  </section>
+
+  <!-- ==========================================
+    MAIN: contenido principal de la página.
+    Dentro van todas las secciones informativas.
+  =========================================== -->
+  <main>
+
+    <!-- SECCIÓN: Sobre mí -->
+    <section class="seccion" id="sobre-mi">
+      <h2 class="seccion__titulo">Sobre mí</h2>
+      <div class="sobre-mi">
+        <!-- Avatar visual (círculo con inicial) -->
+        <div class="sobre-mi__avatar">A</div>
+        <div class="sobre-mi__texto">
+          <p>
+            Tengo 15 años y estoy descubriendo que programar es como tener
+            un superpoder: puedes crear cosas que cualquier persona del mundo
+            puede usar desde su móvil o su ordenador.
+          </p>
+          <p>
+            Actualmente estoy aprendiendo los fundamentos del desarrollo web:
+            HTML para la estructura, CSS para el diseño y JavaScript para
+            añadir vida e interactividad.
+          </p>
+        </div>
+      </div>      
+    </section>
+
+    <!-- SECCIÓN: Habilidades -->
+    <section class="seccion" id="habilidades">
+      <h2 class="seccion__titulo">Habilidades</h2>
+      <p class="seccion__descripcion">
+        Tecnologías que estoy aprendiendo y practicando:
+      </p>
+      <!-- Grid de tarjetas de habilidades -->
+      <div class="habilidades-grid">
+
+        <!-- Cada tarjeta tiene un icono, nombre y nivel de progreso -->
+        <article class="skill-card">
+          <span class="skill-card__icono">🌐</span>
+          <h3 class="skill-card__nombre">HTML</h3>
+          <p class="skill-card__nivel">Aprendiendo la estructura</p>
+          <!-- La barra de progreso: el width% indica cuánto sabes -->
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 60%"></div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-card__icono">🎨</span>
+          <h3 class="skill-card__nombre">CSS</h3>
+          <p class="skill-card__nivel">Explorando el diseño</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 45%"></div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-card__icono">⚡</span>
+          <h3 class="skill-card__nombre">JavaScript</h3>
+          <p class="skill-card__nivel">Primeros pasos</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 25%"></div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-card__icono">🐙</span>
+          <h3 class="skill-card__nombre">Git & GitHub</h3>
+          <p class="skill-card__nivel">Aprendiendo a usarlo</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 30%"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Proyectos -->
+    <section class="seccion" id="proyectos">
+      <h2 class="seccion__titulo">Proyectos</h2>
+      <p class="seccion__descripcion">
+        Trabajos que he realizado durante mi aprendizaje:
+      </p>
+
+      <!-- Grid de tarjetas de proyecto -->
+      <!-- En la Fase 4 añadiremos filtros para estas tarjetas -->
+      <div class="proyectos-grid" id="proyectosGrid">
+
+        <!-- data-category: guardamos la categoría para los filtros de la Fase 4 -->
+        <article class="proyecto-card" data-category="web">
+          <div class="proyecto-card__imagen">🌮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Web</span>
+            <h3 class="proyecto-card__titulo">Landing de restaurante</h3>
+            <p class="proyecto-card__desc">
+              Página de presentación con menú, galería y reservas.
+            </p>
+          </div>
+        </article>
+
+        <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+
+        <article class="proyecto-card" data-category="app">
+          <div class="proyecto-card__imagen">✅</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">App</span>
+            <h3 class="proyecto-card__titulo">Lista de tareas</h3>
+            <p class="proyecto-card__desc">
+              To-do list con localStorage para guardar los datos.
+            </p>
+          </div>
+        </article>
+
+        <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🃏</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Memory Cards</h3>
+            <p class="proyecto-card__desc">
+              Juego de memoria con temporizador y contador de movimientos.
+            </p>
+          </div>
+        </article>
+
+        <article class="proyecto-card" data-category="app">
+          <div class="proyecto-card__imagen">🧮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">App</span>
+            <h3 class="proyecto-card__titulo">Calculadora</h3>
+            <p class="proyecto-card__desc">
+              Calculadora funcional con diseño personalizado.
+            </p>
+          </div>
+        </article>
+
+        <article class="proyecto-card" data-category="web">
+          <div class="proyecto-card__imagen">🖼️</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Web</span>
+            <h3 class="proyecto-card__titulo">Galería filtrable</h3>
+            <p class="proyecto-card__desc">
+              Colección de fotos con filtros animados por categoría.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Contacto -->
+    <!-- El formulario tiene los ids que necesitará el JS de la Fase 5 -->
+    <section class="seccion" id="contacto">
+      <h2 class="seccion__titulo">Contacto</h2>
+      <p class="seccion__descripcion">
+        ¿Tienes un proyecto en mente? ¡Escríbeme!
+      </p>
+
+      <form class="form" id="formContacto" novalidate>
+        <!-- novalidate: desactivamos la validación por defecto del navegador -->
+        <!-- porque en la Fase 5 la haremos nosotros con JavaScript         -->
+
+        <div class="form__grupo">
+          <label class="form__label" for="nombre">Nombre</label>
+          <input
+            class="form__input"
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Tu nombre completo"
+            autocomplete="name"
+          />
+          <!-- Aquí aparecerán los mensajes de error de validación (Fase 5) -->
+          <span class="form__error" id="errorNombre"></span>
+        </div>
+
+        <div class="form__grupo">
+          <label class="form__label" for="email">Email</label>
+          <input
+            class="form__input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tu@email.com"
+            autocomplete="email"
+          />
+          <span class="form__error" id="errorEmail"></span>
+        </div>
+
+        <div class="form__grupo">
+          <label class="form__label" for="mensaje">Mensaje</label>
+          <!-- textarea: campo de texto de varias líneas -->
+          <textarea
+            class="form__input form__textarea"
+            id="mensaje"
+            name="mensaje"
+            rows="4"
+            placeholder="Cuéntame en qué puedo ayudarte..."
+          ></textarea>
+          <span class="form__error" id="errorMensaje"></span>
+        </div>
+
+        <button class="btn btn--primary" type="submit" id="btnEnviar">
+          Enviar mensaje
+        </button>
+
+        <!-- Mensaje de éxito que aparecerá cuando el formulario sea válido -->
+        <p class="form__exito" id="mensajeExito"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+    FOOTER: pie de página con info básica.
+  =========================================== -->
+  <footer class="footer">
+    <p class="footer__texto">
+      Hecho con 💻 y muchas ganas de aprender · 2026
+    </p>
+    <!-- El botón "volver arriba" se activará en la Fase 5 con JS

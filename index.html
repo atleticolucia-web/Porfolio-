@@ -1,40 +1,237 @@
-<!DOCTYPE html>
+Tecnologías<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width= device-width, initia-scale=.1.0"/>
     <title> Porfolio Lucía - Fase 1</title>
-    <link rel="stylesheet" href="style.css"/>
-</head>"
-<body> 
+    <link rel="stylesheet" href="tema-dark-neon.css"/>
+</head>
 
-</body>
-<header class="hero">
-    <p class="hero__tag">Estudiante Front End</p>
-    <h1 class="hero__title">Hola, soy Lucía</h1>
-    <p class="hero__subtitle">
-     Estoy aprendiendo HTML, CSS y JavaScript para crear experiencias web atractivas.
-    </p>
-    <button id="btnSaludo">Haz clic para saludar</button>
+<body>
+
+  <header class="nav" id="inicio">
+    <!-- El logo/nombre del portfolio -->
+    <span class="nav__logo">PORTFOLIO DE LUCÍA<span class="nav__logo--accent">.</span></span>
+
+    <!-- Los enlaces de navegación interna -->
+    <!-- href="#id" salta a la sección con ese id en la misma página -->
+    <nav class="nav__links">
+      <a href="#sobre-mi" class="nav__link">Sobre mí</a>
+      <a href="#habilidades" class="nav__link">Habilidades</a>
+      <a href="#proyectos" class="nav__link">Proyectos</a>
+      <a href="#contacto" class="nav__link">Contacto</a>
+    </nav>
   </header>
-  
+
+<section class="hero">
+    <p class="hero__eyebrow">Estudiante Front End</p>
+    <h1 class="hero__title">
+      Hola, soy <span class="hero__title--accent">LUCÍA</span>
+    </h1>
+    <p class="hero__subtitle">
+      Estoy aprendiendo a construir experiencias web con HTML, CSS y JavaScript.
+      Este es mi espacio para mostrar lo que voy creando.
+    </p>
+    <!-- El botón existe aquí pero su funcionalidad viene en la Fase 2 -->
+    <button class="btn btn--primary" id="btnSaludo">Salúdame</button>
+  </section>
+
+  <!-- ==========================================
+    MAIN: contenido principal de la página.
+    Dentro van todas las secciones informativas.
+  =========================================== -->
   <main>
-    <section class="section">
-        <h2>Sobre mí</h2>
-  <p>Me gusta diseñar interfaces limpias y convertir ideas en páginas web.</p>
+
+
+ <section class="seccion" id="sobre-mi">
+      <h2 class="seccion__titulo">Sobre mí</h2>
+      <div class="sobre-mi">
+        <!-- Avatar visual (círculo con inicial) -->
+        <div class="sobre-mi__avatar">L</div>
+        <div class="sobre-mi__texto">
+          <p>
+            Tengo 16 años y estoy descubriendo que programar es como tener
+            un superpoder: puedes crear cosas que cualquier persona del mundo
+            puede usar desde su móvil o su ordenador. En el futuro quiero dedicarme al hacking ético,
+            por ello estoy aprendiendo 
+          </p>
+          <p>
+            Actualmente estoy aprendiendo los fundamentos del desarrollo web:
+            HTML para la estructura, CSS para el diseño y JavaScript para
+            añadir vida e interactividad. Ademas estoy sacandome un curso de ciberseguridad
+            y aprendiendo a usar la terminal de Linux.
+          </p>
+        </div>
+      </div>      
     </section>
-  
-    <section class="section">
-      <h2>Mis habilidades iniciales</h2>
-      <ul>
-        <li>HTML semántico</li>
-        <li>CSS básico</li>
-        <li>JavaScript básico</li>
-      </ul>
+
+    <section class="seccion" id="habilidades">
+        <h2 class="seccion_titulo">Habilidades</h2>
+  <p class="seccion_descripcion">
+    Tecnologías que estoy aprendiendo y practicando:
+  </p>
+  <div class="habilidades-grid">
+        <article class="skill-card">
+          <span class="skill-card__icono">⚡</span>
+          <h3 class="skill-card__nombre">JavaScript</h3>
+          <p class="skill-card__nivel">Primeros pasos</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 25%"></div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-card__icono">⚡</span>
+          <h3 class="skill-card__nombre">JavaScript</h3>
+          <p class="skill-card__nivel">Primeros pasos</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 25%"></div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-card__icono">⚡</span>
+          <h3 class="skill-card__nombre">JavaScript</h3>
+          <p class="skill-card__nivel">Primeros pasos</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 25%"></div>
+          </div>
+        </article>
+        
+        <article class="skill-card">
+          <span class="skill-card__icono">🐙</span>
+          <h3 class="skill-card__nombre">Git & GitHub</h3>
+          <p class="skill-card__nivel">Aprendiendo a usarlo</p>
+          <div class="skill-card__barra">
+            <div class="skill-card__progreso" style="width: 30%"></div>
+          </div>
+        </article>
+     
+         </div>
+        </section>
+
+        <section class="seccion" id="proyectos">
+          <h2 class="seccion__titulo">Proyectos</h2>
+          <p class="seccion__descripcion">
+            Trabajos que he realizado durante mi aprendizaje:
+          </p>
+
+          <div class="proyectos-grid" id="proyectosGrid">
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+            
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+       
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+        
+            <article class="proyecto-card" data-category="juego">
+          <div class="proyecto-card__imagen">🎮</div>
+          <div class="proyecto-card__cuerpo">
+            <span class="proyecto-card__tag">Juego</span>
+            <h3 class="proyecto-card__titulo">Adivina el número</h3>
+            <p class="proyecto-card__desc">
+              Juego de lógica con contador de intentos y pistas.
+            </p>
+          </div>
+        </article>
+
+          </div>
+        </section>
+
+        <section class="seccion" id="contacto">
+          <h2 class="seccion_titulo">Contacto</h2>
+          <p class="seccion__descripcion">
+            ¿Tienes un proyecto en mente? ¡Escríbeme!
+          </p>
+          <from class="from" id="formContacto" novalidate>
+            
+        <div class="form__grupo">
+          <label class="form__label" for="nombre">Nombre</label>
+          <input
+            class="form__input"
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Tu nombre completo"
+            autocomplete="name"
+          />
+          <div class="form_grupo">
+            <label class="form__label" for="mensaje">Mensaje</label>
+          <!-- textarea: campo de texto de varias líneas -->
+          <textarea
+            class="form__input form__textarea"
+            id="mensaje"
+            name="mensaje"
+            rows="4"
+            placeholder="Cuéntame en qué puedo ayudarte..."
+          ></textarea>
+          <span class="form__error" id="errorMensaje"></span>
+        </div>
+
+        <button class="btn btn--primary" type="submit" id="btnEnviar">
+          Enviar mensaje
+        </button>
+
+        <!-- Mensaje de éxito que aparecerá cuando el formulario sea válido -->
+        <p class="form__exito" id="mensajeExito"></p>
+      </form>
     </section>
+
   </main>
 
-  <script src="script.js"></script>
+  <footer class="footer">
+    <p class="footer__texto">
+      Hecho con 💻 y muchas ganas de aprender · 2026
+    </p>
+
 
 
 </html>
